@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
 @EqualsAndHashCode(of = "id")
 public class Author {

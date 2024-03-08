@@ -2,8 +2,10 @@ package guru.springframework.spring6webapp.bootstrap;
 
 import guru.springframework.spring6webapp.model.Author;
 import guru.springframework.spring6webapp.model.Book;
+import guru.springframework.spring6webapp.model.Publisher;
 import guru.springframework.spring6webapp.repositories.AuthorRepository;
 import guru.springframework.spring6webapp.repositories.BookRepository;
+import guru.springframework.spring6webapp.repositories.PublisherRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
@@ -18,28 +20,30 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
     @Override
     public void run(String... args) throws Exception {
         Author eric = Author.builder().firstName("Eric").lastName("Evan").build();
-        Book ddd = Book.builder().title("Domain Driven Design").isbn("123456").build();
-
-        Author ericSaved = authorRepository.save(eric);
-        Book dddSaved = bookRepository.save(ddd);
-
         Author rod = Author.builder().firstName("Rod").lastName("Johnson").build();
-        Book noEJB = Book.builder().title("J2EE Development without EJB").isbn("54757585").build();
-
+        Author ericSaved = authorRepository.save(eric);
         Author rodSaved = authorRepository.save(rod);
+
+        Book noEJB = Book.builder().title("J2EE Development without EJB").isbn("54757585").build();
+        Book ddd = Book.builder().title("Domain Driven Design").isbn("123456").build();
+        Book dddSaved = bookRepository.save(ddd);
         Book noEJBSaved = bookRepository.save(noEJB);
 
         ericSaved.getBooks().add(dddSaved);
         rodSaved.getBooks().add(noEJBSaved);
-
         authorRepository.saveAll(Arrays.asList(ericSaved, rodSaved));
+
+        Publisher publisher = Publisher.builder().publisherName("My Publisher").address("123 Streets").build();
+        publisherRepository.save(publisher);
 
         log.info("In Bootstrap");
         log.info("Author Count: {}", authorRepository.count());
         log.info("Book Count: {}", bookRepository.count());
+        log.info("Publisher Count: {}", publisherRepository.count());
     }
 }
