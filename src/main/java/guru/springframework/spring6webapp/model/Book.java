@@ -1,14 +1,15 @@
 package guru.springframework.spring6webapp.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "id")
 public class Book {
@@ -20,7 +21,8 @@ public class Book {
 
     private String isbn;
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 }
