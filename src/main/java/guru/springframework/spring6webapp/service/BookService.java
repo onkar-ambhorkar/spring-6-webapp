@@ -1,4 +1,4 @@
-package guru.springframework.spring6webapp.services;
+package guru.springframework.spring6webapp.service;
 
 import guru.springframework.spring6webapp.model.Book;
 

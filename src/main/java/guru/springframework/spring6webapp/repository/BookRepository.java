@@ -1,4 +1,4 @@
-package guru.springframework.spring6webapp.repositories;
+package guru.springframework.spring6webapp.repository;
 
 import guru.springframework.spring6webapp.model.Book;
 import org.springframework.data.repository.CrudRepository;

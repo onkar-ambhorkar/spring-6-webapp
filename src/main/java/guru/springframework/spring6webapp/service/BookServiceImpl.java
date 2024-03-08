@@ -1,7 +1,7 @@
-package guru.springframework.spring6webapp.services;
+package guru.springframework.spring6webapp.service;
 
 import guru.springframework.spring6webapp.model.Book;
-import guru.springframework.spring6webapp.repositories.BookRepository;
+import guru.springframework.spring6webapp.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
